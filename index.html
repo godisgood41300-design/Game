@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nakaru Clash Arena</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">N</span>
+          <div>
+            <h1>Nakaru Clash Arena</h1>
+            <p>Original anime arena battles</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button id="menuButton" class="ghost-button" type="button">Menu</button>
+          <button id="restartButton" class="gold-button" type="button">Restart</button>
+        </div>
+      </header>
+
+      <section class="game-card" aria-label="Nakaru Clash Arena game">
+        <div class="hud" aria-live="polite">
+          <div class="fighter-hud">
+            <div class="hud-row">
+              <strong id="playerName">Nakaru</strong>
+              <span id="playerMeterText">0%</span>
+            </div>
+            <div class="bar health"><span id="playerHealthBar"></span></div>
+            <div class="bar meter"><span id="playerMeterBar"></span></div>
+          </div>
+
+          <div class="round-info">
+            <span>Round 1</span>
+            <strong id="timerText">99</strong>
+          </div>
+
+          <div class="fighter-hud cpu">
+            <div class="hud-row">
+              <strong id="cpuName">Ember Kai</strong>
+              <span id="cpuMeterText">0%</span>
+            </div>
+            <div class="bar health"><span id="cpuHealthBar"></span></div>
+            <div class="bar meter"><span id="cpuMeterBar"></span></div>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas" width="960" height="540" aria-label="2D fighting game arena"></canvas>
+
+          <section id="menuPanel" class="panel active" aria-label="Main menu">
+            <div class="panel-card hero-panel">
+              <p class="eyebrow">Original shonen platform fighter</p>
+              <h2>Nakaru Clash Arena</h2>
+              <p class="panel-copy">Pick a fighter, charge your meter, and outplay a CPU rival in a glowing 2D arena.</p>
+              <div class="menu-grid">
+                <button id="playButton" class="gold-button" type="button">Play</button>
+                <button id="characterButton" class="ghost-button" type="button">Character Select</button>
+                <button id="controlsButton" class="ghost-button" type="button">Controls</button>
+                <button id="creditsButton" class="ghost-button" type="button">Credits</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="selectPanel" class="panel" aria-label="Character select">
+            <div class="panel-card wide-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Choose your fighter</p>
+                  <h2>Character Select</h2>
+                </div>
+                <button class="ghost-button small" data-close-panel type="button">Back</button>
+              </div>
+              <div id="fighterGrid" class="fighter-grid"></div>
+              <div class="select-footer">
+                <p id="selectedFighterText">Selected: Nakaru</p>
+                <div class="select-actions">
+                  <button id="nakaruLookButton" class="ghost-button small" type="button">Nakaru Look: Straw Hat</button>
+                  <button id="startMatchButton" class="gold-button" type="button">Start Match</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="controlsPanel" class="panel" aria-label="Controls">
+            <div class="panel-card">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Move list</p>
+                  <h2>Controls</h2>
+                </div>
+                <button class="ghost-button small" data-close-panel type="button">Back</button>
+              </div>
+              <div class="controls-list">
+                <span>A / D</span><p>Move left and right. Double tap to dash.</p>
+                <span>W</span><p>Jump.</p>
+                <span>S</span><p>Block and reduce incoming damage.</p>
+                <span>J</span><p>Basic attack.</p>
+                <span>K</span><p>Special attack.</p>
+                <span>L</span><p>Ranged energy blast.</p>
+                <span>U</span><p>Ultimate attack when meter is full.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="creditsPanel" class="panel" aria-label="Credits">
+            <div class="panel-card">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Credits</p>
+                  <h2>Original Game Build</h2>
+                </div>
+                <button class="ghost-button small" data-close-panel type="button">Back</button>
+              </div>
+              <p class="panel-copy">
+                Nakaru Clash Arena uses original characters, original move names, canvas-drawn placeholder art,
+                and generated sound tones. No existing anime or game characters, logos, stages, music, or assets are included.
+              </p>
+            </div>
+          </section>
+
+          <section id="resultPanel" class="panel" aria-label="Match result">
+            <div class="panel-card">
+              <p class="eyebrow">Battle complete</p>
+              <h2 id="resultTitle">Victory</h2>
+              <p id="resultCopy" class="panel-copy">Nakaru wins the arena.</p>
+              <div class="menu-grid">
+                <button id="rematchButton" class="gold-button" type="button">Rematch</button>
+                <button id="resultSelectButton" class="ghost-button" type="button">Choose Fighter</button>
+              </div>
+            </div>
+          </section>
+
+          <div id="introText" class="intro-text">Nakaru enters the arena</div>
+          <div id="ultimateBanner" class="ultimate-banner">Ultimate</div>
+        </div>
+      </section>
+
+      <section class="mobile-controls" aria-label="Mobile controls">
+        <div class="mobile-pad">
+          <button data-touch="left" type="button">Left</button>
+          <button data-touch="right" type="button">Right</button>
+          <button data-touch="jump" type="button">Jump</button>
+          <button data-touch="block" type="button">Block</button>
+        </div>
+        <div class="mobile-pad attacks">
+          <button data-touch="attack" type="button">Attack</button>
+          <button data-touch="special" type="button">Special</button>
+          <button data-touch="blast" type="button">Blast</button>
+          <button data-touch="ultimate" type="button">Ultimate</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
