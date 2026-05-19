@@ -1,6 +1,6 @@
 # Nakaru Clash Arena
 
-Nakaru Clash Arena is a deployable browser game built with HTML, CSS, and JavaScript. It is a 2D canvas arena/platform fighter with original anime-inspired characters, CPU combat, health bars, meter, mobile controls, hit sparks, damage numbers, screen shake, and cinematic ultimate effects.
+Nakaru Clash Arena is a deployable browser game built with HTML, CSS, JavaScript, and Three.js/WebGL. It is a 3D arena fighting game with original anime-inspired characters, CPU combat, health bars, meter, mobile controls, hit sparks, damage numbers, screen shake, dynamic camera movement, 3D projectiles, shadows, and cinematic ultimate effects.
 
 ## Legal Note
 
@@ -24,6 +24,7 @@ This project does not include copyrighted anime/game characters, names, logos, s
 - CPU AI that follows, attacks, blocks, uses ranged attacks, and spends ultimate meter
 - Mobile on-screen controls
 - Victory/defeat screen and restart flow
+- 3D WebGL arena with lighting, shadows, camera movement, and original placeholder fighter models
 
 ## Controls
 
@@ -49,7 +50,7 @@ Nakaru is a dark-skinned original wanderer with long hair, a beard, a black Naka
 
 ## Run Locally
 
-Open `index.html` in a browser, or serve the folder with any static server.
+Serve the folder with any static server. Because the game uses JavaScript modules and Three.js, a local server is better than opening `index.html` directly as a file.
 
 Example with Node:
 
@@ -80,3 +81,13 @@ README.md
 ```
 
 No backend or environment variables are required for version 1.
+
+## Dependency
+
+The game imports Three.js from jsDelivr:
+
+```text
+https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js
+```
+
+Make sure the deployed site has normal internet access so the browser can load that module.
